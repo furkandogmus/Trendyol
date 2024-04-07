@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Customer</title>
+</head>
+<body>
+    <h2>Add Customer</h2>
+    <form id="customerForm">
+        <label for="url">URL:</label><br>
+        <input type="text" id="url" name="url"><br>
+        <label for="target_price">Target Price:</label><br>
+        <input type="number" id="target_price" name="target_price"><br>
+        <label for="user_email">User Email:</label><br>
+        <input type="email" id="user_email" name="user_email"><br><br>
+        <button type="button" onclick="addCustomer()">Submit</button>
+    </form>
+
+    <script>
+        function addCustomer() {
+            var url = document.getElementById("url").value;
+            var target_price = document.getElementById("target_price").value;
+            var user_email = document.getElementById("user_email").value;
+
+            var data = { url: url, target_price: target_price, user_email: user_email };
+
+            fetch('http://localhost:5000/add_customer', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert("Customer added successfully!");
+                } else {
+                    alert("Failed to add customer.");
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>
