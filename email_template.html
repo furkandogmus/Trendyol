@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Products Alert</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 20px;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Indirimli Ürünler!</h1>
+    <ul>
+        {% for item in products %}
+        <li>
+            <strong>{{ item.name }}</strong> - Fiyat: {{ item.price }} TL
+            <br>
+            <a href="{{ item.url }}">Ürünü Görüntüle</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

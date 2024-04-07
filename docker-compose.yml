@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  backend:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./customers.txt:/app/customers.txt
+      - ./tracked_products.txt:/app/tracked_products.txt
+      - ./credentials.json:/app/credentials.json
+    environment:
+      - SENDER_EMAIL=<your email>
+      - APP_PASSWORD=<google_app_password>
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
